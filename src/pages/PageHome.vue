@@ -27,7 +27,11 @@
 
     <!-- form -->
     <div v-show="exibir.form">
-      <TarefaForm @salvarClick="recebiSalvar" @comeBack="recebiBack" />
+      <TarefaForm
+        @salvarClick="recebiSalvar"
+        @comeBack="recebiBack"
+        :projectsTask="projetosItens"
+      />
     </div>
 
     <!-- form edit -->
@@ -58,6 +62,7 @@ export default {
     return {
       listaTarefas: null,
       camposEdit: null,
+      projetosItens: null,
       exibir: {
         lista: true,
         form: false,
@@ -110,9 +115,15 @@ export default {
       this.exibir.editar = false;
       this.exibir.lista = true;
     },
+    async obterProjects() {
+      let resultado = await TasksApi.getProjects();
+      this.projetosItens = resultado;
+      console.log(this.projetosItens);
+    },
   },
   created() {
     this.obterTarefas();
+    this.obterProjects();
   },
 };
 </script>

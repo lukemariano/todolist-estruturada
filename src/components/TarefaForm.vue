@@ -16,6 +16,20 @@
         placeholder="Digite a descrição da tarefa"
         v-model="form.description"
       />
+      <div class="input-field col s12">
+        <select style="display: initial !important" v-model="form.project">
+          <option value="Choose your option" disabled selected>
+            Choose your option
+          </option>
+          <option
+            v-for="project in projectsTask"
+            :key="project.id"
+            :value="project.tipo"
+          >
+            {{ project.tipo }}
+          </option>
+        </select>
+      </div>
       <input type="date" name="date" id="date" v-model="form.date" />
       <button @click="salvarTarefa" class="btn-style black">Save</button>
       <button @click="voltarLista" class="btn-style black">Back</button>
@@ -25,12 +39,17 @@
 
 <script>
 export default {
+  name: 'TarefaForm',
+  props: {
+    projectsTask: null,
+  },
   data() {
     return {
       form: {
         title: null,
         description: null,
         date: null,
+        project: null,
       },
     };
   },
@@ -40,6 +59,7 @@ export default {
         title: this.form.title,
         description: this.form.description,
         date: this.form.date,
+        project: this.form.project,
       };
 
       this.$emit('salvarClick', novaTarefa);
@@ -47,12 +67,14 @@ export default {
       this.form.title = null;
       this.form.description = null;
       this.form.date = null;
+      this.form.project = null;
     },
     voltarLista() {
       this.$emit('comeBack');
       this.form.title = null;
       this.form.description = null;
       this.form.date = null;
+      this.form.project = null;
     },
   },
 };

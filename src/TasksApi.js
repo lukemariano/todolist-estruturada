@@ -17,4 +17,8 @@ export default {
   async editTask(tarefaEditada) {
     await axios.patch('/tasks/' + tarefaEditada.id, tarefaEditada);
   },
+  async getProjects() {
+    const req = await axios.get('/projects');
+    return req.data;
+  },
 };
