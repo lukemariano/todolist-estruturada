@@ -1,19 +1,24 @@
 <template>
   <div id="app">
-    <nav class="orange darken-2">
-      <div class="nav-weapper">
-        <img alt="Vue logo" src="../assets/logo.png" width="32" />
-      </div>
+    <nav class="orange darken-2 nav-align">
+      <img alt="Vue logo" src="../assets/logo.png" width="50" />
     </nav>
-
-    <div style="padding: 20px">
-      <button @click="mostrarCadastro">Adicionar</button>
+    <!-- titulo -->
+    <div v-show="exibir.lista" class="hello main-title">
+      <h1>Welcome to your Vuejs APP</h1>
+      <!-- btn adicionar -->
+      <div style="padding: 20px">
+        <button
+          @click="mostrarCadastro"
+          class="btn-floating btn-large waves-effect waves-light btn-add orange darken-2"
+        >
+          <i class="material-icons">add</i>
+        </button>
+      </div>
     </div>
-
     <!-- lista -->
     <div v-show="exibir.lista">
       <TarefaList
-        msg="Welcome to Your Vue.js App"
         :tasks="listaTarefas"
         @salveiDelete="recebiDelete"
         @salveiEdit="recebiEdit"
@@ -22,12 +27,16 @@
 
     <!-- form -->
     <div v-show="exibir.form">
-      <TarefaForm @salvarClick="recebiSalvar" />
+      <TarefaForm @salvarClick="recebiSalvar" @comeBack="recebiBack" />
     </div>
 
     <!-- form edit -->
     <div v-if="exibir.editar">
-      <TarefaEdit :editarCampos="camposEdit" @salvarEdition="apiEdit" />
+      <TarefaEdit
+        :editarCampos="camposEdit"
+        @salvarEdition="apiEdit"
+        @voltarEdit="recebiVoltarEdit"
+      />
     </div>
   </div>
 </template>
@@ -93,6 +102,14 @@ export default {
 
       this.obterTarefas();
     },
+    async recebiBack() {
+      this.exibir.form = false;
+      this.exibir.lista = true;
+    },
+    async recebiVoltarEdit() {
+      this.exibir.editar = false;
+      this.exibir.lista = true;
+    },
   },
   created() {
     this.obterTarefas();
@@ -100,4 +117,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.main-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btn-add {
+  border: none;
+}
+
+.nav-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

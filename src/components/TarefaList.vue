@@ -1,32 +1,35 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-
-    <ul class="collection">
-      <li v-for="task in tasks" :key="task.id" class="collection-item">
-        <h5>
-          {{ task.title }}
-          <span class="task-badge right-align">{{ task.project }}</span>
-        </h5>
-        <p>{{ task.description }}</p>
-        <button
-          class="btn-style black darken-2"
-          @click="deletarTarefa(task.id)"
-        >
-          <div class="flex-display">
-            Delete <i class="material-icons margin-left">delete</i>
-          </div>
-        </button>
-        <button
-          class="btn-style black darken-2"
-          @click="obterTarefaEdit(task.id)"
-        >
-          <div class="flex-display">
-            Edit <i class="material-icons margin-left">edit</i>
-          </div>
-        </button>
-      </li>
-    </ul>
+    <div
+      class="card horizontal card-content"
+      style="width: 70%; margin: 0 auto"
+    >
+      <ul class="collection" style="width: 100%">
+        <li v-for="task in tasks" :key="task.id" class="collection-item">
+          <h5 class="header">
+            {{ task.title }}
+            <span class="task-badge right-align">{{ task.project }}</span>
+          </h5>
+          <p>{{ task.description }}</p>
+          <button
+            class="btn-style black darken-2"
+            @click="deletarTarefa(task.id)"
+          >
+            <div class="flex-display">
+              Delete <i class="material-icons margin-left">delete</i>
+            </div>
+          </button>
+          <button
+            class="btn-style black darken-2"
+            @click="obterTarefaEdit(task.id)"
+          >
+            <div class="flex-display">
+              Edit <i class="material-icons margin-left">edit</i>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

@@ -13,5 +13,23 @@
       "project": "Financeiro",
       "description": "falta melhorar o css, criar campo de pesquisa e selected box"
     }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "tipo": "financeiro"
+    },
+    {
+      "id": 2,
+      "tipo": "pessoal"
+    },
+    {
+      "id": 3,
+      "tipo": "estudos"
+    },
+    {
+      "id": 4,
+      "tipo": "gamer"
+    }
   ]
 }
